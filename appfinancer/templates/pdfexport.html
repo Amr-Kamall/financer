@@ -1,0 +1,30 @@
+{% extends "adminexport.html" %}
+{% block table %}
+<table class='table table-bordered'>
+    <thead class = 'thead'>
+      <tr class = 'trtable'>
+        <th class = 'thtable'>البند</th>
+        <th class = 'thtable'>السعر</th>
+        <th class = 'thtable'>الكمية</th>
+        <th class = 'thtable'>الملاحظات</th>
+        <th class = 'thtable'>التاريخ</th>
+        <th class = 'thtable'>الوقت</th>
+        <th class = 'thtable'>المسئول</th>
+
+        </tr>
+    </thead>
+    <tbody class = 'tbody'>
+        {% for row in datas %}
+          <tr>
+              <td class = 'tdbody'>{{ row.band }}</td>
+              <td class = 'tdbody'>{{ row.price }}</td>
+              <td class = 'tdbody'>{{ row.amount }}</td>
+              <td class = 'tdbody'>{{ row.note }}</td>
+              <td class = 'tdbody'>{{ row.dates.split()[0] }}</td>
+              <td class='tdbody'>{{ row.times.split()[1][:5]}}</td>
+              <td class = 'tdbody'>{{row.user_id}}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%endblock table%}

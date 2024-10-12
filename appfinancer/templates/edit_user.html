@@ -1,0 +1,56 @@
+ {% extends "basepage.html" %} {% block body %}
+<div class="center-content">
+    <div class="form-wrapper">
+      <div class="form-container">
+        <form class="form" action="{{url_for("edit_user" , id = datas.ID)}}" method="POST">
+          <p class="title">تعديل بيانات المستخدم</p>
+          <p class="message">لا يمكن ان يتكرر ال "username" </p>
+          <label>
+             <input type="text" id="name" name="name" required class = 'input' value = '{{datas.NAME}}'>
+          </label>
+
+            <label>
+              <input type="text" id="username" name="username" required class = 'input' value = '{{datas.USERNAME}}'>
+            </label>
+
+          <label>
+              <input type="text" id="password" name="password" required  class='input' value = '{{datas.PASSWORD}}'>
+          </label>
+
+           <label>
+                <input type="text" id="locationwork" name="locationwork" required  class='input' value = '{{datas.LOCATIONWORK}}'>
+           </label>
+
+            <input type = 'submit' value='تعديل  الان' class = 'submit'/>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock body %}
+
+<!-- <div class="col-5 mx-auto">
+    <div class="form-container">
+        <form class="form" action="{{url_for("edit_user" , id = datas.ID)}}" method="POST">
+            <p class="title">أضف مستخدم جديد </p>
+            <p class="message">  لا يجب ان يتكرر "username"</p>
+            <label>
+                <input type="text" id="name" name="name" required class = 'input' value = '{{datas.NAME}}'>
+            </label>
+
+            <label>
+                <input type="text" id="username" name="username" required class = 'input' value = '{{datas.USERNAME}}'>
+            </label>
+
+            <label>
+                <input type="text" id="password" name="password" required  class='input' value = '{{datas.PASSWORD}}'>
+            </label>
+
+            <label>
+                <input type="text" id="locationwork" name="locationwork" required  class='input' value = '{{datas.LOCATIONWORK}}'>
+            </label>
+
+            <input type = 'submit' value='تعديل  الان' class = 'submit'/>
+            
+        </form>
+    </div>
+</div> -->

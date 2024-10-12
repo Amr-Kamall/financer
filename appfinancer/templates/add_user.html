@@ -1,0 +1,99 @@
+{% extends "basepage.html" %}
+{% block body %}
+
+<!-- start sidebar -->
+ <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header> 
+          <div class="bg-logo">
+          <div class="circle"></div>
+          <img src="../static/logo.png" class="sidebar-logo" />
+      </div>
+        Financer  
+    </header>
+    
+      <a href="{{ url_for('userpage') }}">
+         <i class="fas fa-house-user"></i>
+        <span>الرئيسية</span>
+      </a>
+       <a href="{{ url_for('add_user') }}">
+          <i class="fas fa-user-plus" style="color: #ffffff;"></i>
+          <span style="animation-delay: 0.1s">إضافة مستخدم</span>
+       </a>
+       <a href="{{ url_for('adminexport') }}">
+          <i class="fas fa-file-export"></i>
+          <span style="animation-delay: 0.2s">الصادرات</span>
+        </a>
+       <a href="{{ url_for('adminimport') }}">
+          <i class="fas fa-file-import"></i>
+          <span style="animation-delay: 0.3s">الواردات</span>
+        </a>
+        <footer class="sidebar-footer">
+            <a href="{{ url_for('logout')}}" class="logout-btn" >
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>تسجيل خروج</span>
+            </a>
+        </footer>
+    </div>
+<!-- end sidebar  -->
+
+  <div class="center-content">
+    <div class="form-wrapper">
+      <div class="form-container">
+        <form class="form" action="{{url_for("add_user")}}" method="POST">
+          <p class="title">أضف مستخدم جديد </p>
+          <p class="message">لا يمكن ان يتكرر ال "username" </p>
+          {{ formِadd.hidden_tag()}}
+          <label>
+            {{formِadd.name(class="input")}}
+            <span>NAME</span>
+          </label>
+            {%if formِadd.username.errors%}
+            <label>
+            {{formِadd.username(class="input")}}
+            <span>USERNAME</span>
+            </label>
+            <div class = "invalid-feedback">
+                {%for error in formِadd.username.errors%}
+                <span>{{error}}</span>
+                {%endfor%}
+            </div>
+            {% else  %}
+            <label>
+            {{formِadd.username(class="input")}}
+            <span>USERNAME</span>
+            </label>
+            {% endif %}
+            <label>
+            {{formِadd.password(class="input")}}
+            <span>PASSWORD</span>
+        </label>
+        <label>
+            {{formِadd.locationwork(class="input" )}}
+            <span>LOCATION</span>
+        </label>
+            {{ formِadd.submit(class="submit")}}
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--            -->

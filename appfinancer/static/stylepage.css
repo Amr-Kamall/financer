@@ -1,0 +1,533 @@
+/* styles.css */
+
+/* styles.css */
+
+body {
+  direction: rtl;
+  background-color: #fff;
+}
+
+.break-text {
+  font-size: 12px;
+  max-width: 10.2rem;
+  height: auto;
+  word-break: break-all;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+.table-right td:nth-child(8) {
+  float: right;
+}
+
+/* تخصيص الزر "صادرة جديدة" */
+a.new-export {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+a.new-export:hover {
+  background-color: #45a049;
+}
+
+/* تخصيص الزر "واردة جديدة" */
+a.new-import {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff4454;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+a.new-import:hover {
+  background-color: #493ca8;
+}
+
+/*----------------------------------------------*/
+.form-container {
+  width: 400px;
+  background: linear-gradient(#212121, #212121) padding-box,
+    linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
+  padding: 32px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+
+.center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.title {
+  font-size: 28px;
+  color: #ff4454;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  margin: 0;
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #ff4454;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #ff4454;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message,
+.signin {
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: royalblue;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.form label {
+  position: relative;
+}
+
+.form label .input {
+  width: 100%;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+}
+
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+  top: 30px;
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.form label .input:valid + span {
+  color: #ff4454;
+}
+
+.submit {
+  border: none;
+  outline: none;
+  background-color: #ff4454;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: 0.3s ease;
+}
+
+.submit:hover {
+  background-color: rgb(21, 180, 42);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* styles of add_import && add_export page */
+.form-container-add-edit {
+  width: 400px;
+  height: 600px;
+  background: linear-gradient(#212121, #212121) padding-box,
+    linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
+  padding: 32px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+.form-add-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  height: 100%;
+}
+.form-add-edit label {
+  position: relative;
+}
+
+.form-add-edit label .input {
+  width: 100%;
+  padding: 5px 10px 8px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+textarea {
+  height: 84px;
+  resize: none;
+}
+
+.input-textarea {
+  height: 80px;
+}
+
+.form-container-edit {
+  padding: 20px 22px;
+  border-radius: 28px;
+}
+
+.form-edit {
+  gap: 7px;
+}
+
+/* end styles of add_import && add_export page */
+
+/*------------------------------------------------------*/
+
+h2 {
+  font-weight: normal;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnd {
+  background-color: #ff4454;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 21px;
+}
+.btne {
+  background-color: #0a0ef1;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 21px;
+}
+
+.paragraph {
+  background-color: rgb(217, 245, 217);
+  padding: 20px;
+  border-radius: 50px 8px;
+  width: 30%;
+}
+
+/* styles of adminexport page */
+.first-row {
+  margin-top: 20px;
+  margin-right: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* styles of importPage and exportPage */
+.import-export-btn {
+  direction: rtl;
+  background-color: #ff4454;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 25px;
+  margin: 20px 20px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.import-export-btn:first-child:hover {
+  background-color: #198754;
+  color: #fff;
+}
+.import-export-btn:nth-child(2):hover {
+  color: black;
+}
+.first-row-back {
+  margin-top: 50px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.btn-first {
+  direction: rtl;
+  background-color: #ff4454;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 25px;
+  margin: 20px 20px;
+}
+/* end styles of adminexport page */
+
+/* styles of modal */
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"]:checked ~ .modal,
+input[type="checkbox"]:checked ~ .modal-background {
+  display: block;
+}
+.modal-background {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 9998;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: none;
+  width: 300px;
+  height: 300px;
+  background-color: #fff;
+  box-sizing: border-box;
+  z-index: 9999;
+}
+.modal .note-text {
+  padding: 15px;
+  margin: 0;
+  word-break: break-word;
+}
+.modal-header {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #dddddd;
+  box-sizing: border-box;
+  height: 50px;
+}
+.modal-header h3 {
+  margin: 0;
+  box-sizing: border-box;
+  padding-left: 15px;
+  line-height: 50px;
+  color: #4d4d4d;
+  font-size: 16px;
+  display: inline-block;
+}
+.modal-header label {
+  box-sizing: border-box;
+  border-left: 1px solid #dddddd;
+  float: right;
+  line-height: 50px;
+  padding: 0 15px 0 15px;
+  cursor: pointer;
+}
+.modal-header label:hover img {
+  opacity: 0.6;
+}
+/* below is optional, it is just an example for the blue button */
+
+.modal.active {
+  display: block;
+}
+/* end styles of modal */
+
+.logo {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  display: block;
+  z-index: 1000;
+  transition: all 250ms linear;
+}
+.logo img {
+  height: 26px;
+  width: auto;
+  display: block;
+  filter: brightness(10%);
+  transition: filter 250ms 700ms linear;
+}
+.modal-btn:checked ~ .logo img {
+  filter: brightness(100%);
+  transition: all 250ms linear;
+}
+
+@media screen and (max-width: 500px) {
+  .modal-wrap {
+    padding-bottom: 15px;
+  }
+  .modal-wrap p {
+    padding: 15px 20px 0 20px;
+  }
+}
+/* end styles of modal */
+
+/* end media query of addUser page */
+@media (max-width: 646px) {
+  .btn-first {
+    font-size: 13px;
+    padding: 8px 11px;
+    margin: 22px 20px;
+  }
+}
+@media (max-width: 525px) {
+  .import-export-btn {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 9px 15px;
+  }
+}
+
+@media (max-width: 536px) {
+  .first-row {
+    flex-direction: column;
+  }
+  .btn-first {
+    margin: 10px 18px;
+  }
+}
+
+@media (max-width: 425px) {
+  .import-export-btn {
+    font-size: 10px;
+    font-weight: 600;
+    margin: 9px 10px;
+  }
+}
+
+/* media query of adminExport page */ /* media query of addUser page */
+@media (max-width: 420px) {
+  .title {
+    font-size: 20px;
+  }
+  .form {
+    padding: 10px;
+  }
+  .form-container {
+    padding: 25px 20px;
+    width: 320px;
+  }
+  .form-container-add-edit {
+    max-width: 358px;
+    margin: auto;
+  }
+  .custum-file-upload {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .form-container-add-edit {
+    max-width: 338px;
+  }
+  .custum-file-upload {
+    width: 100%;
+  }
+}
+
+/* end media query of adminExport page */

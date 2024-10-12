@@ -1,0 +1,185 @@
+{% extends "basepage.html" %}
+{% block body %}
+
+
+<!-- start sidebar -->
+ <input type="checkbox" id="check">
+    <label for="check">
+      <i class="fas fa-bars" id="btn"></i>
+      <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebar">
+      <header> 
+          <div class="bg-logo">
+          <div class="circle"></div>
+          <img src="../static/logo.png" class="sidebar-logo" />
+      </div>
+        Financer  
+    </header>
+    
+      <a href="{{ url_for('userpage') }}">
+         <i class="fas fa-house-user"></i>
+        <span>الرئيسية</span>
+      </a>
+       <a href="{{ url_for('add_user') }}">
+          <i class="fas fa-user-plus" style="color: #ffffff;"></i>
+          <span style="animation-delay: 0.1s">إضافة مستخدم</span>
+       </a>
+       <a href="{{ url_for('adminexport') }}">
+          <i class="fas fa-file-export"></i>
+          <span style="animation-delay: 0.2s">الصادرات</span>
+        </a>
+       <a href="{{ url_for('adminimport') }}">
+          <i class="fas fa-file-import"></i>
+          <span style="animation-delay: 0.3s">الواردات</span>
+        </a>
+        <footer class="sidebar-footer">
+            <a href="{{ url_for('logout')}}" class="logout-btn" >
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span>تسجيل خروج</span>
+            </a>
+        </footer>
+    </div>
+<!--end sidebar  -->
+
+
+
+  <div class="first-row"> 
+       <!-- <a href = {{url_for("add_import")}} class = 'btn btn-success'>إضافة صادرة جديده</a>  -->
+      <button href="#" class="btn" >
+        <i class="fas fa-file-pdf"></i> تحميل PDF
+      </button>
+      <label for="location-filter">فلترة بواسطة الموقع:</label>
+      <select id="location-filter" onchange="updateTable()" value="اختر الموقع" class="btn-first btn-warning">
+        <option>اختر الموقع</option>
+        {% for location in location %}
+        <option>{{ location }}</option>
+        {% endfor %}
+        <option value="1" id="1">الكل</option>
+      </select>
+  </div>
+
+<!-- start script -->
+<script>
+
+  function updateTable() {
+    var locationFilter = document.getElementById("location-filter");
+    var selectedOption = locationFilter.options[locationFilter.selectedIndex];
+    selectLocation = selectedOption.value;
+
+    fetch('/save_select_location', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ selectLocation: selectLocation })
+    })
+      .then(response => response.text())
+      .then(data => {
+        console.log(selectLocation); // لطباعة رد Flask في وحدة التحكم (Console)
+        location.reload(); // إعادة تحميل الصفحة
+        setSelectedOption(selectLocation);
+      })
+      .catch(error => {
+        console.error('حدث خطأ:', error);
+      });
+  }
+
+</script>
+<!-- end script -->
+
+
+
+<!-- start new table -->
+<div class="page-content">
+<main class="table" id="customers_table">
+  <div class="table__body">
+    <table>
+      <thead>
+        <tr>
+          <th>البند</th>
+          <th>السعر</th>
+          <th>الكمية</th>
+          <th>الملاحظات</th>
+          <th>الصورة</th>
+          <th>التاريخ</th>
+          <th>الوقت</th>
+          <th>المسئول</th>
+          <th>حذف</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in datas %}
+        <tr>
+          <td>{{ row.band }}</td>
+          <td>{{ row.price }}</td>
+          <td>{{ row.amount }}</td>
+          <td>
+              <input type="checkbox" id="modal-{{ loop.index }}">
+              <label for="modal-{{ loop.index }}" class="example-label">اعرض الملاحظه</label>
+              <label for="modal-{{ loop.index }}" class="modal-background"></label>
+                <div class="modal">
+                     <div class="modal-header">
+                         <h3>الملاحظه</h3>
+                          <label for="modal-{{ loop.index }}">
+                              <span>❌</span>
+                          </label>
+                        </div>
+                        <div class="note-text">{{ row.note }}</div>
+                    </div>
+                    <!-- {{ row.note }} -->
+            </td>
+          <td class="photo-parent">
+            <a
+              href="static/images/{{row.image_file}}"
+              class="show text-decoration-none text-white"
+              >اعرض الصوره</a
+            >
+          </td>
+          <td>{{ row.dates.split()[0] }}</td>
+          <td>{{ row.times.split()[1][:5]}}</td>
+          <td>{{row.user_id}}</td>
+           <td class="delete-parent">
+               <a href='{{url_for('delete_import', id=row.ID)}}' class='delete'><svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg></a>
+           </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</main>
+</div>
+<!-- end new table -->
+
+   <!-- <table class = 'table table-bordered'> 
+    <thead class = 'thead'>
+        <th class = 'thtable'>البند</th>
+        <th class = 'thtable'>السعر</th>
+        <th class = 'thtable'>الكمية</th>
+        <th class = 'thtable'>الملاحظات</th>
+        <th class = 'thtable'>الصورة</th>
+        <th class = 'thtable'>التاريخ</th>
+        <th class = 'thtable'>الوقت</th>
+        <th class = 'thtable'>المسئول</th>
+        <th class = 'thtable'>حذف</th>
+    </thead>
+    <tbody>
+        {% for row in datas %}
+            <tr>
+                <td class = 'tdbody'>{{row.band}}</td>
+                <td class = 'tdbody'>{{row.price}}</td>
+                <td class = 'tdbody'>{{row.amount}}</td>
+                <td class = 'tdbody expandable-cell'>{{row.note}}</td>
+                <td><a href='static/images/{{row.image_file}}' class='show text-decoration-none text-white'>اعرض الصوره</a></td>
+                <td class = 'tdbody'>{{row.dates.split()[0]}}</td>
+                <td class = 'tdbody'>{{row.times.split()[1][:5]}}</td>
+                <td class = 'tdbody'>{{row.user_id}}</td>
+                <td><a href = '{{url_for('delete_import' , id = row.ID)}}' class = 'delete' ><svg viewBox="0 0 448 512" class="svgIcon"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path></svg></a></td>
+            </tr>
+
+        {%endfor%}
+    </tbody>
+
+   </table>
+    -->
+{% endblock body %}

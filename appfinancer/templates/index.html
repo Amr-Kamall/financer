@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{%block body%}
+<!-- partial:index.partial.html -->
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="" method = 'POST'>
+			{{ formadmin.hidden_tag()}}
+			<h1>تسجيل دخول الادمن</h1>
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-instagram"></i></a>
+				<a href="#" class="social"><i class="fab fa-tiktok"></i></a>
+				<a href="#" class="social"><i class="fab fa-youtube"></i></a>
+				<a href="#" class="social"><i class="fab fa-whatsapp"></i></a>
+			</div>
+			<span>دخول الادمن</span>
+			{{formadmin.usernameadmin(class = 'input form-control from-control-md' , placeholder="اسم المستخدم")}}
+			{{formadmin.passwordadmin(class = 'input form-control from-control-md' , placeholder="كلمة المرور")}}
+			<a href="https://wa.me/+201145425207">نسيت الباسوورد</a>
+			{{ formadmin.submit(class = 'button ')}}
+				<div class="button-parent">
+				<button class="btn-resposible" type="button">دخول المسئول</button>
+			</div>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/" method = 'POST'>
+			{{ form.hidden_tag()}}
+			<h1>تسجيل الدخول</h1>
+		</br>
+			<!--<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>-->
+			<span>دخول مسئول الموقع</span>
+		</br>
+			{{form.username(class = 'input form-control from-control-md' , placeholder="اسم المستخدم")}}
+			{{form.password(class = 'input form-control from-control-md' , placeholder="كلمة المرور")}}
+			<div class = 'form-check'>
+				{{form.remember( class = 'form-check-input')}}
+				{{form.remember.label( class = 'form-check-input-label')}}
+			</div>
+			<a href="https://wa.me/+201145425207">نسيت الباسوورد</a>
+			{{ form.submit(class = 'button ')}}
+
+			<div class="button-parent">
+				<button class="btn-login" type="button">دخول الادمن</button>
+			</div>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>مرحبا بعودتك</h1>
+				<p>تسجيل دخول الادمن حافظ علي اسم المستخدم وكلمة المرور الخاصه بك </p>
+				<button class="ghost" id="signIn">دخول المسئول</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>مرحبا بعودتك</h1>
+				<p>تسجيل دخول الادمن</p>
+				<button class="ghost" id="signUp">دخول الادمن</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- partial -->
+  <script  src='{{url_for('static', filename='script.js')}}'></script>
+{%endblock%}
